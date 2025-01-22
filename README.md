@@ -13,6 +13,11 @@ This repository provides tools for generating such 2D maps efficiently, enabling
 ## Usage
 
 
+## Example maps
+Maps from IllustrisTNG -- TNG100 (galaxy with id=19 from snapshot=99)
+![galaxy_19_99_0](https://github.com/user-attachments/assets/382e954b-9f3f-468d-8bb7-0171046aad8b)
 
+Maps from EAGLE (galaxy with id=19151261 from snapshot=28)
+![galaxy_19151261_28_2](https://github.com/user-attachments/assets/6afb574c-fe34-492d-890d-57c5a79bedcf)
 
 

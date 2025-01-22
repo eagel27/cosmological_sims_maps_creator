@@ -1,8 +1,8 @@
 import numpy as np
 import sys
 
-from IllustrisTNG.read_data import IllustrisTNGGalaxyDataReader, IllustrisTNGSimulationReader
-from IllustrisTNG.galaxy import Galaxy
+from simulations.IllustrisTNG.read_data import IllustrisTNGGalaxyDataReader, IllustrisTNGSimulationReader
+from simulations.IllustrisTNG.galaxy import Galaxy
 from constants import SIM_NAME, MAPS_RESULTS_PATH, BASE_PATH, CATALOG_DS_PATH
 from base.galaxy_base import GalaxyMapsBase
 

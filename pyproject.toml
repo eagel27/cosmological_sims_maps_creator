@@ -1,0 +1,20 @@
+[project]
+name = "cosmological_sims_maps_creator"
+version = "0.1.0"
+description = "A package for the creation of 2D maps of galaxies from cosmological simulations"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "astropy>=6.1.7",
+    "eaglesqltools>=2.0.0",
+    "h5py>=3.12.1",
+    "illustris-python",
+    "matplotlib>=3.10.0",
+    "numpy>=2.2.2",
+    "pandas>=2.2.3",
+    "scipy>=1.15.1",
+    "tqdm>=4.67.1",
+]
+
+[tool.uv.sources]
+illustris-python = { git = "https://github.com/illustristng/illustris_python.git" }

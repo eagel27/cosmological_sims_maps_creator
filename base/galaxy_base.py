@@ -11,9 +11,9 @@ import matplotlib.ticker as mticker
 from collections import Counter
 from scipy.ndimage import gaussian_filter
 from multiprocessing import Pool
-from constants import PLANE_LOS_PROJECTION, LOS_PROJECTION, SOLAR_METALLICITY
-from alignments import ALIGNMENTS
-from utils import calc_percentiles
+from .constants import PLANE_LOS_PROJECTION, LOS_PROJECTION, SOLAR_METALLICITY
+from .alignments import ALIGNMENTS
+from .utils import calc_percentiles
 
 
 class GalaxyBase(object):

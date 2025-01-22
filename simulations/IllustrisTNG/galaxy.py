@@ -1,7 +1,5 @@
 import numpy as np
-import os
 import sys
-import pandas as pd
 
 from read_data import IllustrisTNGGalaxyDataReader, IllustrisTNGSimulationReader
 from constants import BASE_PATH_FIX, SIM_NAME, MAPS_RESULTS_PATH, CATALOG_DS_PATH

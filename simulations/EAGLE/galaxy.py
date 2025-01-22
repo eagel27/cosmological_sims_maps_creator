@@ -1,10 +1,6 @@
 import numpy as np
 import os
 import sys
-import copy
-import pandas as pd
-
-sys.path.append(os.path.abspath('../..'))
 
 from db_queries import QUERY_SUBHALO_DATA
 from read_data import EagleReader, EagleSnapshotDataReader, EagleGalaxyDataReader

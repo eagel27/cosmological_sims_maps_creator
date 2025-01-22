@@ -4,10 +4,15 @@ Currently, IllustrisTNG and EAGLE cosmological simulations are supported.
 These maps can be used for simulation-based inference.
 
 ## Background
-Cosmological simulations like [IllustrisTNG](https://www.tng-project.org/) and [EAGLE](https://eagle.strw.leidenuniv.nl/wordpress/) are able to reproduce realistic galaxies. To be able to compare their products with real galaxies, we need to create 2D maps of observable stellar properties from simulations by integrated the 3D space of particles to a 2D projection.
+Cosmological simulations, such as [IllustrisTNG](https://www.tng-project.org/) and [EAGLE](https://eagle.strw.leidenuniv.nl/wordpress/), have transformed our understanding of galaxy formation by producing realistic 3D models of galaxies and large-scale structures. To compare these simulations with observations, we need to create 2D projections of observable properties, mimicking what telescopes capture.
 
+Simulations store properties like stellar mass, luminosity, and metallicity in 3D space. Converting these to 2D maps involves integrating along a chosen line of sight, applying appropriate weighting schemes (e.g., mass or luminosity), and accounting for observational effects such as resolution and orientation. These maps can represent stellar properties, kinematics, or chemical abundances and are key for connecting theory to observation.
+
+This repository provides tools for generating such 2D maps efficiently, enabling direct comparisons with data from galaxy surveys. By bridging simulations and observations, these tools support studies of galaxy structure, evolution, and dynamics.
 
 ## Usage
+
+
 
 
 

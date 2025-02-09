@@ -18,6 +18,7 @@ dependencies = [
 
 [tool.setuptools]
 py-modules = ["simulations", "base"]
+packages = ["cosmo_sims_maps_creator"]
 
 [tool.uv.sources]
 illustris-python = { git = "https://github.com/illustristng/illustris_python.git" }

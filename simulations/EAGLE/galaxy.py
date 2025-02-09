@@ -4,14 +4,33 @@ import sys
 
 from db_queries import QUERY_SUBHALO_DATA
 from read_data import EagleReader, EagleSnapshotDataReader, EagleGalaxyDataReader
-from constants import DB_USER, DB_PASSWORD, SIM_NAME, MAPS_RESULTS_PATH, DATA_PATH, CATALOG_DS_PATH
+from constants import (
+    DB_USER,
+    DB_PASSWORD,
+    SIM_NAME,
+    MAPS_RESULTS_PATH,
+    DATA_PATH,
+    CATALOG_DS_PATH,
+)
 from base.galaxy_base import GalaxyBase, GalaxyMapsBase
 
 
-class Galaxy(GalaxyBase):
+class EagleGalaxy(GalaxyBase):
 
-    def __init__(self, gid, gn, sgn, centre, centre_vel, hmrg, galaxy_snapshot_reader,
-                 los='Z', align=False, output_file=None, should_load_datasets=True):
+    def __init__(
+        self,
+        gid,
+        gn,
+        sgn,
+        centre,
+        centre_vel,
+        hmrg,
+        galaxy_snapshot_reader,
+        los="Z",
+        align=False,
+        output_file=None,
+        should_load_datasets=True,
+    ):
         """
         Initialize all variables for this galaxy
         :param gid: The GalaxyID
@@ -37,19 +56,19 @@ class Galaxy(GalaxyBase):
         self.galaxy_reader = galaxy_snapshot_reader
         self.output_file = output_file
 
-        self.SIMNAME = 'EAGLE'
-        super(Galaxy, self).__init__(should_load_datasets)
+        self.SIMNAME = "EAGLE"
+        super(EagleGalaxy, self).__init__(should_load_datasets)
 
     def get_id(self):
         return self.gid
 
     def get_cosm_params(self):
         cosm_params = {
-            'scaling_factor': self.galaxy_reader.scaling_factor,
-            'hubble_param': self.galaxy_reader.hubble_param,
-            'omega0': self.galaxy_reader.omega0,
-            'omegaLambda': self.galaxy_reader.omegaLambda,
-            'boxsize': self.galaxy_reader.boxsize
+            "scaling_factor": self.galaxy_reader.scaling_factor,
+            "hubble_param": self.galaxy_reader.hubble_param,
+            "omega0": self.galaxy_reader.omega0,
+            "omegaLambda": self.galaxy_reader.omegaLambda,
+            "boxsize": self.galaxy_reader.boxsize,
         }
         return cosm_params
 
@@ -64,14 +83,14 @@ class Galaxy(GalaxyBase):
         return vel_central
 
 
-class GalaxyMaps(GalaxyMapsBase):
+class EagleGalaxyMaps(GalaxyMapsBase):
 
-    SIM = 'EAGLE'
+    SIM = "EAGLE"
     SIM_NAME = SIM_NAME
     MAPS_RESULTS_PATH = MAPS_RESULTS_PATH
     CATALOG_DS_PATH = CATALOG_DS_PATH
 
-    def __init__(self, align=False, los='Z', suffix='', id_start=None, id_stop=None):
+    def __init__(self, align=False, los="Z", suffix="", id_start=None, id_stop=None):
         """
         Initialize params required to create 2D maps
         :param align: If align is True, create the edge on view of the galaxy
@@ -89,10 +108,13 @@ class GalaxyMaps(GalaxyMapsBase):
         :return: Return the query data for that galaxy (in list form)
         """
         sim_reader = EagleReader(DB_USER, DB_PASSWORD, snapshot)
-        galaxies_catalog_data_path = os.path.join(DATA_PATH,
-                                                  'DB_Data/galaxy_catalog_data_{}.npy'.format(snapshot))
+        galaxies_catalog_data_path = os.path.join(
+            DATA_PATH, "DB_Data/galaxy_catalog_data_{}.npy".format(snapshot)
+        )
         if not os.path.exists(galaxies_catalog_data_path):
-            galaxies_catalog_data = sim_reader.query(SIM_NAME, QUERY_SUBHALO_DATA, extra=(snapshot, ))
+            galaxies_catalog_data = sim_reader.query(
+                SIM_NAME, QUERY_SUBHALO_DATA, extra=(snapshot,)
+            )
             np.save(galaxies_catalog_data_path, galaxies_catalog_data)
         else:
             galaxies_catalog_data = np.load(galaxies_catalog_data_path)
@@ -101,8 +123,9 @@ class GalaxyMaps(GalaxyMapsBase):
         del sim_reader
         return galaxies_catalog_data
 
-    def create_galaxy_object(self, subhalo_data, snapshot,
-                             output_file=None, should_load_datasets=True):
+    def create_galaxy_object(
+        self, subhalo_data, snapshot, output_file=None, should_load_datasets=True
+    ):
         """
         Create a galaxy object for EAGLE
         :param subhalo_data: The subhalo data of this galaxy
@@ -121,32 +144,19 @@ class GalaxyMaps(GalaxyMapsBase):
 
         galaxy_reader = None
         if should_load_datasets:
-            galaxy_reader = EagleGalaxyDataReader(*subhalo_data[0:3], centre,
-                                                  centre_vel, snapshot_reader)
-        g_object = Galaxy(*subhalo_data[0:3], centre, centre_vel, hmrg, galaxy_reader,
-                          align=self.align, los=self.los, output_file=output_file,
-                          should_load_datasets=should_load_datasets)
+            galaxy_reader = EagleGalaxyDataReader(
+                *subhalo_data[0:3], centre, centre_vel, snapshot_reader
+            )
+        g_object = EagleGalaxy(
+            *subhalo_data[0:3],
+            centre,
+            centre_vel,
+            hmrg,
+            galaxy_reader,
+            align=self.align,
+            los=self.los,
+            output_file=output_file,
+            should_load_datasets=should_load_datasets,
+        )
 
         return g_object
-
-
-if __name__ == '__main__':
-    mode = int(sys.argv[1])
-    align = int(sys.argv[2])
-
-    id_start, id_stop = None, None
-    suffix = ''
-    if len(sys.argv) > 3:
-        id_start = int(sys.argv[3])
-        id_stop = int(sys.argv[4])
-        suffix = sys.argv[5]
-
-    if align == 1:
-        galaxy_maps = GalaxyMaps(align=True, los='X', suffix=suffix, id_start=id_start, id_stop=id_stop)
-    else:
-        galaxy_maps = GalaxyMaps(suffix=suffix, id_start=id_start, id_stop=id_stop)
-
-    if mode == 1:
-        galaxy_maps.create_maps()
-    elif mode == 2:
-        galaxy_maps.save_2d_maps()

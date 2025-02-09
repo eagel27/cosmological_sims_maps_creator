@@ -1,13 +1,12 @@
 import numpy as np
-import sys
 
-from simulations.IllustrisTNG.read_data import (
+from cosmological_sims_maps_creator.simulations.IllustrisTNG.read_data import (
     IllustrisTNGGalaxyDataReader,
     IllustrisTNGSimulationReader,
 )
-from simulations.IllustrisTNG import IllustrisTNGGalaxy
+from cosmological_sims_maps_creator.simulations.IllustrisTNG import IllustrisTNGGalaxy
 from constants import SIM_NAME, MAPS_RESULTS_PATH, BASE_PATH, CATALOG_DS_PATH
-from base.galaxy_base import GalaxyMapsBase
+from cosmological_sims_maps_creator.base.galaxy_base import GalaxyMapsBase
 
 
 class EagleIllustrisTNGGalaxyMaps(GalaxyMapsBase):

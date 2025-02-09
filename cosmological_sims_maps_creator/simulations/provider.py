@@ -1,6 +1,6 @@
-from simulations.EAGLE import EagleGalaxyMaps
-from simulations.EAGLE_IllustrisTNG import EagleIllustrisTNGGalaxyMaps
-from simulations.IllustrisTNG import IllustrisTNGGalaxyMaps
+from cosmological_sims_maps_creator.simulations.EAGLE import EagleGalaxyMaps
+from cosmological_sims_maps_creator.simulations.EAGLE_IllustrisTNG import EagleIllustrisTNGGalaxyMaps
+from cosmological_sims_maps_creator.simulations.IllustrisTNG import IllustrisTNGGalaxyMaps
 
 
 class GalaxySimulationProvider:

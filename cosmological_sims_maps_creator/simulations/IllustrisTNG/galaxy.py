@@ -1,9 +1,8 @@
 import numpy as np
-import sys
 
 from read_data import IllustrisTNGGalaxyDataReader, IllustrisTNGSimulationReader
 from constants import BASE_PATH_FIX, SIM_NAME, MAPS_RESULTS_PATH, CATALOG_DS_PATH
-from base.galaxy_base import GalaxyBase, GalaxyMapsBase
+from cosmological_sims_maps_creator.base.galaxy_base import GalaxyBase, GalaxyMapsBase
 
 
 class IllustrisTNGGalaxy(GalaxyBase):

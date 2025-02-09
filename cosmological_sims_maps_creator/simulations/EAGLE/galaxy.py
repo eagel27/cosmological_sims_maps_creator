@@ -1,6 +1,5 @@
 import numpy as np
 import os
-import sys
 
 from db_queries import QUERY_SUBHALO_DATA
 from read_data import EagleReader, EagleSnapshotDataReader, EagleGalaxyDataReader
@@ -12,7 +11,7 @@ from constants import (
     DATA_PATH,
     CATALOG_DS_PATH,
 )
-from base.galaxy_base import GalaxyBase, GalaxyMapsBase
+from cosmological_sims_maps_creator.base.galaxy_base import GalaxyBase, GalaxyMapsBase
 
 
 class EagleGalaxy(GalaxyBase):

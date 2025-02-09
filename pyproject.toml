@@ -17,7 +17,7 @@ dependencies = [
 ]
 
 [tool.setuptools]
-py-modules = []
+py-modules = ["simulations", "base"]
 
 [tool.uv.sources]
 illustris-python = { git = "https://github.com/illustristng/illustris_python.git" }
